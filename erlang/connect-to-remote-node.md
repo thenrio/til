@@ -15,4 +15,4 @@ another
 
 		erl -sname debugger -setcookie products -remsh products@pokayoke
 
-> when connecting on a node, you can not run unloaded code ...
+> it works on an node started by elixir
