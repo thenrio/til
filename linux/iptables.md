@@ -1,3 +1,4 @@
+
 goal is to block access from this host to a container
 ports are the following
 
@@ -5,6 +6,7 @@ ports are the following
     15672/tcp -> 0.0.0.0:15672
     5672/tcp -> 0.0.0.0:5672
 
+this is useful to create network partition
 
 Given
 
