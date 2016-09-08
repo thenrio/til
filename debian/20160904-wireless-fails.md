@@ -1,4 +1,3 @@
-
 may be related (network manager)
 https://bbs.archlinux.org/viewtopic.php?id=216366
 https://bbs.archlinux.org/viewtopic.php?id=210868
@@ -59,3 +58,6 @@ install?
 
 nope...
 not this day :)
+
+O2- start wireless on command line and wait for resolution of network-manager-gnome
+
