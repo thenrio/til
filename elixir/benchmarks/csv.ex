@@ -33,8 +33,8 @@ defmodule Benchmark do
     micro_seconds(fn ->
       File.open("/tmp/stream.csv", [ :write, :raw, :delayed_write ], fn (f) ->
         Postgrex.transaction(pid, fn(pid) ->
-          Postgrex.stream(pid, q, [], options) |>
-            Enum.each(fn (%{rows: rows }) -> csv(rows, f, &IO.binwrite/2) end)
+          Postgrex.stream(pid, q, [], options)
+          |> Enum.each(fn (%{rows: rows }) -> csv(rows, f, &IO.binwrite/2) end)
           end, timeout: :infinity)
       end)
     end)
