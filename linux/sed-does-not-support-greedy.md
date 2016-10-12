@@ -1,5 +1,6 @@
-
 see [sof](http://stackoverflow.com/questions/1103149/non-greedy-regex-matching-in-sed)
+
+type `help(re)` in python to see that : `.*?`, `.+?`
 
 sed does not support that ...
 
