@@ -25,9 +25,9 @@ then the cost function
 
 then the descent
 
-    Θⱼ = Θⱼ - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱ, for j in 0..n
+    Θⱼ = Θⱼ - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 0..n
 
-    dJ/dΘⱼ = 1/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱ
+    dJ/dΘⱼ = 1/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
 
 > digraphs
 >
