@@ -80,7 +80,6 @@ is a line
 
 ### non linear
 
-
            x
        xx    x
         x  O x
@@ -126,9 +125,13 @@ and then
     J(Θ) = -1/m ∑yⁱ * log( hΘ(Xⁱ) ) + ( 1-yⁱ ) * log( 1-hΘ(Xⁱ) ), for i=1..m
 
 and we want to minimize this cost function
+calculus shows
+
+    dJ/dΘⱼ = ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
+
+then
 
     Θⱼ = Θⱼ - α ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 0..n
-    dJ/dΘⱼ = ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
 
 with
 
@@ -138,8 +141,13 @@ vectorized implementation should look like
 
     Θ := Θ - α∑[ (hΘ(Xⁱ) - yⁱ) Xⁱ ]
 
-Optimizations
-=============
+> this is really near linear regression...
+> the diff is dJlin/dΘᵢ = 1/m dJlog/dΘᵢ
+>
+> not really sure for the calculus of logistic regression!
+
+Advanced optimizations
+======================
 
 * conjugate gradient
 * BFGS
@@ -150,7 +158,6 @@ pros
 * no need to pick α
 
 in octave
-
 
     [optTheta, funtionVal, exitFlag]= fminunc(@costFunction, initialTheta, options)
 
@@ -163,11 +170,12 @@ with
 > and index start at 1 in octave :)
 >
 
+    gradient(i) = [ dJ/dΘᵢ₋₁ ] j=1:n+1
+
 multiclass classification
 =========================
 tags : work, friends, family, hobby
         y=1        2        3     4
-
 
 one versus rest (one versus all)
 --------------------------------
@@ -178,9 +186,7 @@ one versus rest (one versus all)
            O
     XXXX
 
-
 is mapped to 3 binary problems
-
 
     NN             **             **
     NN             **             **
@@ -188,4 +194,78 @@ is mapped to 3 binary problems
            *              O              *
     ****           ****           XXXX
 
- 
+overfitting
+============
+
+underfitting => the training set has error (high bias)
+overfitting => fit training set very well, but any new example has high error (high variance)
+
+options
+-------
+
+O1- reduce number of features
+
+* manually
+* model selection algorithm (later)
+
+O2- regularization
+
+intuition for regularization
+============================
+
+    y ^          x
+      |    x
+      |  x
+      |
+      | x
+      +------------->
+                    x
+
+    Θ₀ + Θ₁x + Θ₂x² + Θ₃x³ + Θ₄x⁴
+
+try to have Θ₃ Θ₄ near zeros (small contributions)
+
+    J(Θ) = 1/2m (∑( hΘ(Xⁱ) - Yⁱ)² + λ∑Θⱼ²(j=1:n)) i=1:m
+
+λ is regularization parameter
+
+regularization for linear regression
+====================================
+
+    Θⱼ = Θⱼ( 1-αλ/m) - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 1..n
+
+normal equation and regularization
+==================================
+
+    Θ = ( X'X )⁻¹ X'y
+
+it is the analytical equation, that minimize the cost function J
+now, regularization changes J
+
+    Θ = ( X'X + λA )⁻¹ X'y
+
+with
+
+    A [ 0
+          1
+            1
+              1 ]
+
+    A is identity (n+1) except A(1,1)=0
+
+non invertibility ?
+-------------------
+suppose `m<n` (more features than examples)
+then, `X'X` is not invertible
+
+but `X'X + λA` is, for `λ>0`
+
+regularization for logistic regression
+======================================
+
+    J(Θ) = -1/m ∑yⁱ * log( hΘ(xⁱ) ) + ( 1-yⁱ ) * log( 1-hΘ(xⁱ) ) + λ/2m∑Θⱼ², i=1:m, j=1:n
+
+and the partial derivative
+
+    dJ/dΘ₀ =  1/m ∑( hΘ(xⁱ) - yⁱ)xⁱ₀
+    dJ/dΘⱼ =  1/m ∑( hΘ(xⁱ) - yⁱ)xⁱⱼ + λ/m Θⱼ
