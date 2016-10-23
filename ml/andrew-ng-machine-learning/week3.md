@@ -127,7 +127,7 @@ and then
 and we want to minimize this cost function
 calculus shows
 
-    dJ/dΘⱼ = ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
+    dJ/dΘⱼ = 1/m∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
 
 then
 
@@ -141,8 +141,7 @@ vectorized implementation should look like
 
     Θ := Θ - α∑[ (hΘ(Xⁱ) - yⁱ) Xⁱ ]
 
-> this is really near linear regression...
-> the diff is dJlin/dΘᵢ = 1/m dJlog/dΘᵢ
+> this is really like linear regression...
 >
 > not really sure for the calculus of logistic regression!
 
