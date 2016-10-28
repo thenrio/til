@@ -51,9 +51,9 @@ vocab
 many nodes
 ----------
 
-    x₁ -+-> a₁ -+--> h0
+    x₁ -+-> a₁ -+
         |       |
-    x₂ -+-> a₂ -+
+    x₂ -+-> a₂ -+--> h0
         |       |
     x₃ -+-> a₃ -+
 
@@ -66,14 +66,119 @@ the final is the output layer (L3)
 notations
 ---------
 
-    aᵢⁿ activation of unit i in layer n (is j in lecture, but does not have j superscript)
-    θⁿ  matrix of weight controlling function mapping from layer j to layer j+1
+    aᵢ⁽ⁿ⁾ activation of unit i in layer n (is j in lecture, but does not have j superscript)
+    θ⁽ⁿ⁾  matrix of weight controlling function mapping from layer j to layer j+1
 
 then, from above example
 
-    a₁² = g( θ₁₀¹ x₀ + θ₁₁¹ x₁ + θ₁₂¹ x₂ + θ₁₃¹ x₃ )
-    a₂² = g( θ₂₀¹ x₀ + θ₂₁¹ x₁ + θ₂₂¹ x₂ + θ₂₃¹ x₃ )
+    a₁⁽²⁾ = g( θ₁₀⁽¹⁾ x₀ + θ₁₁⁽¹⁾ x₁ + θ₁₂⁽¹⁾ x₂ + θ₁₃⁽¹⁾ x₃ )
+    a₂⁽²⁾ = g( θ₂₀⁽¹⁾ x₀ + θ₂₁⁽¹⁾ x₁ + θ₂₂⁽¹⁾ x₂ + θ₂₃⁽¹⁾ x₃ )
     ...
-    hθ  = g( θ₁₀² x₀ + θ₁₁² x₁ + θ₂₁² x₂ )
+    hθ  = g( θ₁₀⁽²⁾ x₀ + θ₁₁⁽²⁾ x₁ + θ₂₁⁽²⁾ x₂ )
 
-if layer n as k nodes, and layer n+1 m nodes, then θⁿ as size (m, k+1)
+if layer n as k nodes, and layer n+1 m nodes, then θⁿ has size (m, k+1)
+
+vectorized implementation
+=========================
+forward propagation
+
+    x₁ -+-> a₁⁽²⁾ -+
+        |          |
+    x₂ -+-> a₂⁽²⁾ -+--> h0
+        |          |
+    x₃ -+-> a₃⁽²⁾ -+
+
+we had
+
+    a₁⁽²⁾ = g( θ₁₀⁽¹⁾ x₀ + θ₁₁⁽¹⁾ x₁ + θ₁₂⁽¹⁾ x₂ + θ₁₃⁽¹⁾ x₃ )
+
+extract
+
+    z₁⁽²⁾ = θ₁₀⁽¹⁾ x₀ + θ₁₁⁽¹⁾ x₁ + θ₁₂⁽¹⁾ x₂ + θ₁₃⁽¹⁾ x₃
+    a₁⁽²⁾ = g(z₁⁽²⁾)
+
+>
+> z₁⁽²⁾ is z₁ of layer 2
+>
+
+
+    x = [x₀      z⁽²⁾ = [
+         x₁           z⁽²⁾₁
+         x₂           z⁽²⁾₂
+         x₃]          z⁽²⁾₃]
+
+and
+
+    z⁽²⁾ = θ⁽¹⁾x
+    a⁽²⁾ = g(z⁽²⁾)
+
+> g applies element wise
+
+and let
+
+    a⁽¹⁾ = x
+
+then
+
+    a⁽ⁿ⁺¹⁾ = g( θ⁽ⁿ⁾ a⁽ⁿ⁾ )
+
+> we add a⁽²⁾₀=1
+
+note that
+
+             a₁⁽²⁾ -+
+                    |
+             a₂⁽²⁾ -+--> h0
+                    |
+             a₃⁽²⁾ -+
+
+is just logistic regression, not applied to the input x, but the _hidden_ layer 2 a⁽²⁾
+
+so, algorithm as the opportunity to build appropriate _features_ that fit well
+
+other architectures
+-------------------
+
+    x -> L1 -> L2 -> hθ
+
+> L2 size may be different than L1
+
+x is the input layer
+(L1:k) are the hidden layers
+final is output layer
+
+Applications
+============
+logical algebra/functions
+all inputs in {0, 1}
+
+XOR (XNOR=NOT(XOR))
+XNOR
+
+    (1, 0) -> 0
+    (1, 1) -> 1
+    (1, 0) -> 0
+    (0, 0) -> 1
+
+AND, OR, NOT
+
+    h = g( -30 + 20x₁ + 20x₂ ) ~ x₁ AND x₂
+    h = g( -10 + 20x₁ + 20x₂ ) ~ x₁ OR x₂
+    h = g( 10 - 20x₁ ) ~ NOT x₁
+
+> made using truth table
+
+NOT(x) AND NOT(y)
+0 unless (0,0) else 1
+
+    10 -20x -20y
+
+putting it together : XNOR
+
+    x   y  a1=(x AND y)  a2=(NOT(x) AND NOT(y)) h=(a1 OR a2)=(x XNOR y)
+    0   0      0                  1                   1
+    0   1      0                  0                   0
+    1   0      0                  0                   0
+    1   1      1                  0                   1
+
+:)
