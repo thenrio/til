@@ -4,10 +4,10 @@ may add k-polynomial combinations when number of features is small
 
     Θ₀ + Θ₁x₁ + Θ₂x₂ + Θ₃x₁² + Θ₄x₂² + Θ₅x₁x₂ + ...
 
-when n increases, then this is not sustainable (around n^k/2?)
+when n increases, then this is not sustainable (around O(n^k))
 
-n=100, k=2 => around   5000 (n^k/2)
-n=100, k=3 => around 170000
+n=100, k=2 => around   5000 (~n^k/2)
+n=100, k=3 => around 170000 (~n^3/8)
 
 > does not remember my maths :)
 
@@ -147,9 +147,9 @@ x is the input layer
 (L1:k) are the hidden layers
 final is output layer
 
-Applications
-============
-logical algebra/functions
+Application : logical algebra/functions
+=======================================
+
 all inputs in {0, 1}
 
 XOR (XNOR=NOT(XOR))
@@ -182,3 +182,24 @@ putting it together : XNOR
     1   1      1                  0                   1
 
 :)
+
+Application : multi class classification
+========================================
+such has recognition of hand written digits (0-9, Yann LeCun)
+
+eg : 4 class [ pedestrian car motorcycle truck ]
+
+want response
+
+    [1 when pedestrian [0 when car, ...
+     0                  1
+     0                  0
+     0]                 0] 
+
+> want is _model_ there
+> previously, we had response in {1:4}
+
+makes last layer units be [ pedestrian? car? motorcycle? truck? ]
+similar to one versus all (there is one 1 all rest is 0 in response)
+
+
