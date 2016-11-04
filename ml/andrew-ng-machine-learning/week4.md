@@ -25,8 +25,8 @@ hypothesis is "one learning algorithm"
 that is, one net can learn to "see" though it used to "hear"
 input is different, still, the net learns
 
-model
-=====
+forward propagation : model
+===========================
 
 single node
 -----------
@@ -78,9 +78,8 @@ then, from above example
 
 if layer n as k nodes, and layer n+1 m nodes, then θⁿ has size (m, k+1)
 
-vectorized implementation
-=========================
-forward propagation
+forward propagation : vectorized implementation
+===============================================
 
     x₁ -+-> a₁⁽²⁾ -+
         |          |
@@ -97,15 +96,17 @@ extract
     z₁⁽²⁾ = θ₁₀⁽¹⁾ x₀ + θ₁₁⁽¹⁾ x₁ + θ₁₂⁽¹⁾ x₂ + θ₁₃⁽¹⁾ x₃
     a₁⁽²⁾ = g(z₁⁽²⁾)
 
->
 > z₁⁽²⁾ is z₁ of layer 2
 >
-
+> the edges going to a₁⁽²⁾ are [ θ₁₀⁽¹⁾, θ₁₁⁽¹⁾, θ₁₃⁽¹⁾ ]
+> they are all from layer 1 θⱼᵢ⁽¹⁾
+> that is θ₁₀⁽¹⁾=(a₀⁽¹⁾, a₁⁽²⁾), θ₁₁⁽¹⁾=(a₁⁽¹⁾, a₁⁽²⁾)
+>
 
     x = [x₀      z⁽²⁾ = [
-         x₁           z⁽²⁾₁
-         x₂           z⁽²⁾₂
-         x₃]          z⁽²⁾₃]
+         x₁              z⁽²⁾₁
+         x₂              z⁽²⁾₂
+         x₃]             z⁽²⁾₃]
 
 and
 
@@ -194,12 +195,10 @@ want response
     [1 when pedestrian [0 when car, ...
      0                  1
      0                  0
-     0]                 0] 
+     0]                 0]
 
 > want is _model_ there
 > previously, we had response in {1:4}
 
 makes last layer units be [ pedestrian? car? motorcycle? truck? ]
 similar to one versus all (there is one 1 all rest is 0 in response)
-
-
