@@ -29,15 +29,14 @@ neural network
 
 and regularization term
 
-    λ/2m∑ₙ∑ᵢ∑ⱼ(Θⱼᵢⁿ)²
+    λ/2m∑ₗ∑ᵢ∑ⱼ(Θⱼᵢ⁽l⁾)²
     j=1:sₗ₊₁
     i=1:sₗ
-    n=1:L-1
+    l=1:L-1
 
-> n is l and I use n because no superscript k :)
 
-backpropagation algorithm
-=========================
+back propagation algorithm
+==========================
 so we need to compute
 
     J(Θ)
@@ -45,12 +44,14 @@ so we need to compute
 
 > l is put downscript there is superscript in course
 
+forward propagation is
 suppose 1 training example (x, y)
 
-    a¹ = x
-    z² = Θ¹a¹
-    a² = g(z²) (with added bias unit a₀²)
+    a⁽¹⁾ = x
+    z⁽²⁾ = Θ⁽¹⁾a⁽¹⁾
+    a⁽²⁾ = g(z⁽²⁾) (with added bias unit a₀²)
     ...
+    a⁽³⁾ = hΘ(x) = g(z⁽⁴⁾)
 
 intuition δⱼₗ is error of unit/node j in layer l
 
