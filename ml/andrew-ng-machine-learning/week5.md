@@ -75,7 +75,23 @@ and we _can prove_ that (__without the regularization term__)
 so we can implement something like
 start Δ⁽l⁾ is zero
 
-    Δ⁽l⁾ = Δ⁽l⁾ + δᵢ⁽l⁾ * a⁽l⁾'
+for i = 1:m (training set) do
+
+    set a⁽¹⁾=x⁽ⁱ⁾
+    compute a⁽l⁾ for l=2:L using forward progapation
+    δ⁽L⁾=a⁽L⁾-y⁽ⁱ⁾
+    compute δ⁽l⁾ for l=L-1:2
+
+    Δᵢⱼ⁽l⁾ = Δᵢⱼ⁽l⁾ + aⱼδᵢ⁽l+1⁾
+
+> this is not the same i as the outer one ...
+
+then 
+
+    Dᵢⱼ⁽l⁾ = 1/m Δᵢⱼ⁽l⁾ + λΘᵢⱼ⁽l⁾ if j > 0
+    Dᵢⱼ⁽l⁾ = 1/m Δᵢⱼ⁽l⁾ otherwise
+
+these are the derivatives we look for!
 
 backpropagation intuition
 =========================
