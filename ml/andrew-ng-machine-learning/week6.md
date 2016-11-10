@@ -5,13 +5,18 @@ suppose h=predict house price is making large errors.
     J(Θ) = 1/2m (∑( hΘ(Xⁱ) - Yⁱ)² + λ∑Θⱼ²(j=1:n)) i=1:m
 
 what to do ?
+TL;DR
 
-* use more training examples
-* reduce number of features
-* add features
-* add polynomial features
-* increase λ
-* decrease λ
+    +----------------------------+-----------+---------------+
+    |option                      | high bias | high variance |
+    +----------------------------+-----------+---------------+
+    |use more training examples? |           |      X        |
+    |reduce number of features   |           |      X        |
+    |add features                |    X      |               |
+    |add polynomial features     |    X      |               |
+    |decrease λ                  |    X      |               |
+    |increase λ                  |           |      X        |
+    +----------------------------+-----------+---------------+
 
 exploring all of them MAY be expensive in time.
 
@@ -136,4 +141,10 @@ getting more training examples does help
 
 > but slowly
 
+neural network and over/under fitting
+=====================================
+small network : cheap in cpu but prone to under fitting
+big   network : cpu expensive, prone to over fitting
 
+
+> big network : how many layers (L) ? _minimize_ Jcv(L)
