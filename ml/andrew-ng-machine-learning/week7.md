@@ -112,6 +112,71 @@ where p is the orthogonal projection of x on θ
 if we set boundary near to actual X, then p is small, so we need large ||Θ|| for | p.||Θ|| | > 1
 so this conflict with ||Θ|| is small (minimize J).
 
+kernels
+=======
+suppose a distribution like this
 
+      OOOO     OOOOO
+    O  X   OOOO    O
+    O  XX XX  XX    O
+    O  X X  XXXX    O
+      OO     XX     O
+         O  O OO OOO
+
+with two features
+
+    (x1, x2) -> y
+    y = 1 if z=(Θ₀ + Θ₁x₁ + Θ₂x₂ + Θ₃x₁x₂ + ... Θ₅x₂²) >= 0; 0 otherwise
+
+let
+
+    z=ΣΘᵢfᵢ
+
+we have
+
+    f₁=x₁
+    f₃=x₁x₂
+    ...
+
+is there a way to define all these features f?
+
+Given x, _choose_ (???!) 3 proximity landmarks l⁽¹⁾, l⁽²⁾, l⁽³⁾
+
+f1, similarity( x, l⁽¹⁾)
+
+    = e^( - ||x - l⁽¹⁾||²/2σ² )
+
+the similarity function is called a kernel function (or k).
+here, the one we used is a gaussian kernel.
+
+
+> ||x - l⁽¹⁾|| = Σ(xᵢ-l⁽¹⁾ᵢ)², i=1:2
+> there is no x₀
+>
+
+understand the _shape_ of k
+
+if x ~ l⁽¹⁾, then k ~ 1
+otherwise, k ~ 0
+
+when we plat k, when σ=1, then we have a perfect gaussian.
+when σ increase, then hill is larger
+when σ decreases, then we approach dirac
+
+> amplitude does not change : max is 1
+>
+
+then suppose we have
+
+    Θ=[0.5 1 1 0]
+
+then what is near l⁽¹⁾ and l⁽²⁾ are positives (z>=0)
+otherwise is negative
+
+so when we have a positive example, as a landmark, we can draw a near region that is
+also positive, and then fit complex functions.
+
+> looks like attractor.
+>
 
 
