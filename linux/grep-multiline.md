@@ -51,12 +51,35 @@ problem is
     sys	0m0.548s
 
 want to extract only hostnames that have errors
+should be frgbmrfid1259l1
 
-here is a working ruby implementation
+ruby
+====
+NOT working
+-----------
 
-	irb(main):026:0> re = %r{^(fr.*?\n).*?locked$}m
-	=> /^(fr.*?\n).*?locked$/m
-	irb(main):027:0> s.scan re
-	=> [["frgbmrfid1061l1\n"]]
+    irb(main):032:0> s=File.read("test")
+    irb(main):027:0> s.scan /^(fr.*?\n).*?locked$/m
+    => [["frgbmrfid1061l1\n"]]
+
+it selects frgbmrfid1061l1 instead of frgbmrfid1259l1
+
+`^fr` starts match and `.*` accumulates...
+
+correct
+-------
+
+		irb(main):036:0* s.scan(/^fr.*$|^.*locked$/).join("\n").scan(/^(fr\w*)\nError/m)
+		=> [["frgbmrfid1259l1"]]
+
+idea is to narrow hostname from error pattern, so that we can match nearest one.
+
+grep
+====
+is then obvious
+
+    grep -E "^fr|locked$" test | grep -B 1 locked$ | grep ^fr
+    frgbmrfid1259l1
+
 
 
