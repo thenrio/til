@@ -179,4 +179,126 @@ also positive, and then fit complex functions.
 > looks like attractor.
 >
 
+choosing the landmarks
+======================
+landmarks are just x...
 
+    l⁽i⁾ = x⁽i⁾ i=1:m
+
+then the feature vector
+
+    f⁽i⁾ⱼ =  similarity( x⁽i⁾, l⁽j⁾ )
+          =  similarity( x⁽i⁾, x⁽j⁾ )
+          i=0:m
+
+> aaaaand f⁽0⁾ = 1
+
+hypothesis is: Given x, compute features f (size=m+1)
+predict is y=1 when Θ'f >= 0, 0 otherwise.
+
+training is
+
+    min J(Θ)
+    J(Θ) = C(∑yⁱ * cost1(xⁱ) + ( 1-yⁱ ) * cost0(xⁱ)) + 1/2 ∑Θⱼ², i=1:m, j=1:n
+
+and we have n=m
+
+implementation details : regularization
+=======================================
+
+    ∑Θⱼ² = Θ'Θ  (with θ₀=0)
+
+and we often do
+
+    Θ'MΘ
+
+where M enables better scaling to large feature set (???!).
+
+svm and kernels do well
+logistic regression and kernels do not, in practice is slow.
+
+implementation details : parameters
+===================================
+C = 1/λ
+
+    large C => high variance (like λ=0)
+    low   C => high bias
+
+σ²
+
+    f = e^( - ||x - l⁽¹⁾||²/2σ² )
+
+then
+
+    large : high bias (low variance) (see above, f vary smoothly, then we have large error)
+    small : low bias (high variance)
+
+SVM?
+====
+recommends use a lib :)
+most of all require you to choose
+
+* C
+* the similarity function (kernel)
+
+choice of kernel
+----------------
+no kernel is linear kernel : θ'f = θ'x
+MAY BE appropriate when n >> m
+
+
+gaussian?
+> then have to choose σ...
+
+appropriate for n small and/or m large
+
+> MAY have to scale features BEFORE (depends on lib...)
+> it is important, because k=exp^-( ||x-l||²/2 )
+>
+> if one feature is 1000 and other is 1, then similarity is _flawed_
+>
+
+kernel need to verify "Mercer theorem".
+(also see https://en.wikipedia.org/wiki/Support_vector_machine which has a link on Mercer and kernel trick).
+
+there are many _of the shelf_ kernels
+
+* polymomials
+
+    (x'l)²
+    (x'l)³
+    (x'l + 1)³
+
+* string kernels (???! distance between two strings :), ...
+
+parameters of algorithm SHOULD BE determined using the __validation__ set
+> should be highlighted at least once, or twice
+
+multiclass
+----------
+most SVM have support
+otherwise, use one versus all (git grep)
+
+    y has size K
+    train K svm, which distinguish class i from all other
+    Θ⁽1⁾ (y=1) is class 1 over the rest, Θ⁽2⁾ ~ y=2, ...
+
+
+logistic regression or svm?
+===========================
+
+                logistic      svm               try add features
+    n >> m        X           linear k
+
+    n small                   gaussian k
+    m medium
+
+
+    n small       ?             ?                     ?
+    m large
+
+small :  1000
+medium:  10 * small (10k)
+
+> neural network is likely to work as well but MAY BE slower to train.
+>

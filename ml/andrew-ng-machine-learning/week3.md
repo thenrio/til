@@ -202,15 +202,15 @@ overfitting => fit training set very well, but any new example has high error (h
 options
 -------
 
-O1- reduce number of features
+reduce number of features ?
 
 * manually
 * model selection algorithm (later)
 
-O2- regularization
+regularization ?
 
-intuition for regularization
-============================
+regularization intuition
+========================
 
     y ^          x
       |    x
@@ -232,6 +232,11 @@ regularization for linear regression
 ====================================
 
     Θⱼ = Θⱼ( 1-αλ/m) - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 1..n
+
+regularization TL;DR
+
+    λ=0     => no regularization  => MAY BE high variance (overfit)
+    λ=high  => high error         => high bias
 
 normal equation and regularization
 ==================================
