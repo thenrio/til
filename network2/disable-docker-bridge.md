@@ -6,12 +6,12 @@ see
 				inet 172.17.0.1/16 scope global docker0
 					valid_lft forever preferred_lft forever
 
-bridge uses a wide span of ipv4...
+bridge is 172.17.0.1/16 (that is wide...).
 
 https://docs.docker.com/engine/userguide/networking/
 https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/
 
-the default docker bridge 
+the default docker bridge
 
 stop docker
 
