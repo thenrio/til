@@ -101,3 +101,86 @@ model is
     y=0 if p(x) >= ε (normal)
 
 can use validation set to choose ε
+
+### is accuracy a good way to measure performance?
+no because of skewed classes (good >> bad).
+
+### possible evaluation metric
+
+* F1 score (recommended: maximize F1 score on the validation set)
+* precision, recall
+
+anomaly detection versus supervised learning?
+=============================================
+which one to pick ?
+
+
+    anomaly                 |   supervised
+    ------------------------+----------------------------------------
+    very few positive       |   large number of positive and negative.
+    (0-20 is common)        |
+                            |
+    large negative          |   Enough positive to learn what it look like.
+                            |   Future positive should look the same.
+    many different types    |
+    of anomaly.             |
+    hard for an algorithm   |
+    to learn from positive  |
+    example what they might |
+    look like.`             |
+    them...                 |
+                            |
+    future anomaly may not  |
+    look like the previous  |
+
+eg:
+
+* anomaly: fraud, manufacturing (low rate of error), monitoring of machines...
+* supervised: spam, weather prediction, cancer classification...
+
+> it is possible to switch from anomaly to supervised once there is enough positive examples...
+
+choosing features to use
+========================
+plot each feature : is it gaussian?
+
+> hist function does that in octave.
+
+non gaussian features
+---------------------
+if not then maybe a log will bring it to that distribution?
+
+     x
+    xxx
+    xxxx
+      x x
+        xxxx
+          x xxx
+              xxx
+
+or square, 1/5, or ...
+
+error analysis
+--------------
+we want
+
+    p large for normal (y=0)
+    p small for anomaly (y=1)
+
+what we might get is : comparable (say large for both)...
+then may introduce a __new feature__ so that we find different values
+
+> either large or small, it will appear as an anomaly
+> this is an important property of the algorithm
+> try to push anomaly out of the gaussian shape
+
+eg: computer monitoring
+choose features that may take large or small values on anomaly
+
+* memory use
+* io (disk, network, ...)
+* load
+* network usage
+
+for instance x5=load/network, x6=load²/network, ...
+
