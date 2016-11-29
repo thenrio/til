@@ -46,7 +46,7 @@ vocab
     g activation function (sigmoid)
 
 > we bias x₀ MAY be omitted or not its value is 0...
-> not sure yet, does not matter now
+>  not sure yet, does not matter now
 
 many nodes
 ----------

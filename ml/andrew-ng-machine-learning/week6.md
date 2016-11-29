@@ -146,12 +146,10 @@ neural network and over/under fitting
 small network : cheap in cpu but prone to under fitting
 big   network : cpu expensive, prone to over fitting
 
-
 > big network : how many layers (L) ? _minimize_ Jcv(L)
 
 building a spam classifier ?
 ============================
-
 features : words indicating spam/not spam ?
 say 100 features
 
@@ -266,7 +264,6 @@ more generally
 
 so is there a way to compute this threshold that yield the best precision/recall ?
 
-
     algorithm1 : P=0.5  R=0.4
     algorithm2 : P=0.7  R=0.1
     algorithm3 : P=0.02 R=1.0
@@ -323,6 +320,3 @@ large data rationale
 
 * use a large traning set (this will decrease variance)
     then Jtest ~ Jtrain
-
-
-
