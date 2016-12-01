@@ -114,24 +114,23 @@ anomaly detection versus supervised learning?
 =============================================
 which one to pick ?
 
-
-    anomaly                 |   supervised
-    ------------------------+----------------------------------------
-    very few positive       |   large number of positive and negative.
-    (0-20 is common)        |
-                            |
-    large negative          |   Enough positive to learn what it look like.
-                            |   Future positive should look the same.
-    many different types    |
-    of anomaly.             |
-    hard for an algorithm   |
-    to learn from positive  |
-    example what they might |
-    look like.`             |
-    them...                 |
-                            |
-    future anomaly may not  |
-    look like the previous  |
+      anomaly                 |   supervised
+      ------------------------+----------------------------------------
+      very few positive       |   large number of positive and negative.
+      (0-20 is common)        |
+                              |
+      large negative          |   Enough positive to learn what it look like.
+                              |   Future positive should look the same.
+      many different types    |
+      of anomaly.             |
+      hard for an algorithm   |
+      to learn from positive  |
+      example what they might |
+      look like.`             |
+      them...                 |
+                              |
+      future anomaly may not  |
+      look like the previous  |
 
 eg:
 
@@ -184,3 +183,107 @@ choose features that may take large or small values on anomaly
 
 for instance x5=load/network, x6=load²/network, ...
 
+multi gaussian distribution
+===========================
+let x₁ cpu load, x₂ mem use
+and measures like
+
+      x₂
+      ^
+      |
+      |   o     x
+      |       x xx
+      |     x x
+      |    xxx
+      |   xx
+      |
+      +--------------> x₁
+
+the o is quite far from x region, and still, MAY be selected as ok.
+this is because algorithm beams like circle (or disc).
+each variable is independant.
+
+let's take a different model: xᵢ are not modeled separately (ie: not independant).
+
+    p(x; μ, σ²) = 1/(2π^(n/2) |E|^1/2) . exp( -1/2 (X-μ)' E⁻¹ (X-μ) )
+
+with
+
+    E covariance matrix of X
+    |E| is determinant of E
+
+eg:
+
+    μ=[0 0]
+
+    E=[1 0
+       0 1]
+
+then p(x) should radiate in circle (contour).
+
+      E=[0.6  0
+         0    0.6]
+
+still, radiates in circle, sharper (less flat).
+
+and
+
+      E=[1    0.8
+         0.8  1]
+
+Then it looks like an ellipsis with axis (0,0) (1,1) (raising).
+(negative should relood at course to be sure :)
+
+algorithm
+=========
+let's recap
+
+    x has dim n (n features)
+    μ has dim n
+    E has dim n n
+
+Given a training set of size m (x⁽ⁱ⁾)
+Then
+
+    μ = 1/m ∑x⁽ⁱ⁾ i=1:m
+    E = 1/m ∑(x⁽ⁱ⁾-μ)(x⁽ⁱ⁾-μ)'
+
+> that was not so complicated :)
+>
+
+steps are
+
+S1- fit model on the training set using formula above.
+
+S2- Given a new example, flag anomaly if
+
+    p(x) < ε
+
+relation with original model?
+-----------------------------
+original and multivariate distribution are the same when E is diagonal.
+(that is no correlation).
+
+    E = [σ₁²
+           σ₂²
+             .
+               .]
+
+comparison
+----------
+original
+
+* requires to manually create news features out of existing ones to capture anomalies (x₃=x₂/x₁).
+    > that is combine, correlate features.
+
+* is cpu cheap.
+
+* scales to high n
+
+multivariate
+
+* adjusts correlation.
+* cpu more expensive.
+* does not scale to high n (matrix inversion).
+* MUST have m > n or E is not invertible (in practice, use if m > 10n).
+    > when not invertible, check size, check features are not redundant (same as normal equation).
