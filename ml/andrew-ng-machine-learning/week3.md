@@ -101,11 +101,11 @@ how to choose parameters (fit)?
 
 in linear regression, we had
 
-    J(Θ) = 1/2m ∑( hΘ(Xⁱ) - Yⁱ)², for i=1..m
+    J(Θ) = 1/2m ∑( hΘ(Xⁱ) - Yⁱ)², for i=1:m
 
 that is
 
-    J(Θ) = 1/m ∑cost( hΘ(Xⁱ), Yⁱ ), for i=1..m
+    J(Θ) = 1/m ∑cost( hΘ(Xⁱ), Yⁱ ), for i=1:m
 
 with
 

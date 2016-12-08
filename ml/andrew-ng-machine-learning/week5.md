@@ -34,7 +34,6 @@ and regularization term
     i=1:sₗ
     l=1:L-1
 
-
 back propagation algorithm
 ==========================
 so we need to compute

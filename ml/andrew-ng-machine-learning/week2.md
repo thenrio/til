@@ -21,11 +21,11 @@ then
 
 then the cost function
 
-    J(Θ) = 1/2m ∑( hΘ(Xⁱ) - Yⁱ)², for i=1..m
+    J(Θ) = 1/2m ∑( hΘ(Xⁱ) - Yⁱ)², for i=1:m
 
 then the descent
 
-    Θⱼ = Θⱼ - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 0..n
+    Θⱼ = Θⱼ - α/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ, for j in 0:n
 
     dJ/dΘⱼ = 1/m ∑( hΘ(Xⁱ) - Yⁱ)Xⁱⱼ
 
