@@ -7,6 +7,8 @@ suppose h=predict house price is making large errors.
 what to do ?
 TL;DR
 
+                                 +---------------------------+
+                                 |        problem            |
     +----------------------------+-----------+---------------+
     |option                      | high bias | high variance |
     +----------------------------+-----------+---------------+

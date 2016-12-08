@@ -139,7 +139,7 @@ with
 
 vectorized implementation should look like
 
-    Θ := Θ - α∑[ (hΘ(Xⁱ) - yⁱ) Xⁱ ]
+    Θ := Θ - α∑ (hΘ(Xⁱ) - yⁱ) Xⁱ
 
 > this is really like linear regression...
 >
