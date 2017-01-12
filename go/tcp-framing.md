@@ -1,4 +1,3 @@
-
 see go-challenge-2
 
 and this [comment](http://blog.nella.org/golang-challenge-2-comments/)
@@ -12,7 +11,4 @@ and this [comment](http://blog.nella.org/golang-challenge-2-comments/)
 > You read the length using encoding/binary.Read, make an io.LimitedReader which is limited to the length, then give that LimitedReader to ioutil.ReadAll.> You can handle timeouts by checking that if the underlying io.Reader satisfies an interface with SetReadDeadline in it (as the various connection types in package net do), and then using it to set a deadline. 
 > After the deadline passes, the underlying io.Reader will return a timeout error, which the LimitedReader will return to ioutil.ReadAll, which will cause it to return early, telling you that the read timed out.
 
-this is a decent solution
-
-another is to look for frame delimiter, if protocol has one
-and prefixed size is better than delimiter, because delimiter require to inspect each byte
+this _looks_ a decent solution (did not test it).
