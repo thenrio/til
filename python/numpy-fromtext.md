@@ -36,3 +36,18 @@ plt.hist(products[brands == b'CCH'])
 
 > condition MUST use the correct datatype (watch out the b)
 >
+
+another example
+
+```
+date,BNB,BRE,CCH
+2017-02-13,29015,16349,48623
+2017-02-14,32226,20462,57377
+2017-02-15,32257,20469,57479
+2017-02-16,32287,20452,57632
+2017-02-17,32325,20464,57775
+```
+
+```
+np.genfromtxt('catalogs.csv', dtype=None, names=['date','BNB','BRE','CCH'], delimiter=',', skip_header=1)
+```
