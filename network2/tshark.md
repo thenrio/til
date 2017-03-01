@@ -21,3 +21,8 @@ capture MAY also use display filter
 ```bash
 tshark -n -Y http -i lo dst port 9080
 ```
+
+at this time useful display filters
+
+* http
+* tcp.flags.push==1
