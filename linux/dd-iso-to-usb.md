@@ -40,8 +40,6 @@ it is sdc
 
 * dump
 
-		sudo dd bs=4M if=
-
 as root
 
 		dd bs=4M if=tmp/clonezilla-live-2.2.4-12-i486.iso of=/dev/sdc status=progress
