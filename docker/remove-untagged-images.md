@@ -1,3 +1,0 @@
-docker rmi $( docker images -a | grep "^<none>" | awk '{print $3}' )
-
-and it is lame, because and untagged image MAY BE a parent of a tagged one...
