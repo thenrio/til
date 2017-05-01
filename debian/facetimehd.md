@@ -6,7 +6,7 @@ TL;DR
 
 ```bash
 cd firmware
-make install
+sudo make install
 cd -
 make clean
 make
