@@ -89,6 +89,8 @@ see http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-advanced
 (1583, 2)
 ```
 
+> .ix is deprecated in 0.20.0 :)
+
 
 ```python
 f2=pd.DataFrame(dict(filename=f.filename, products=f.products))
@@ -116,11 +118,20 @@ TypeError: unhashable type: 'slice'
 condition
 =========
 
+boolean indexing
+----------------
+
 ```ipython
 In [36]: d2[d2.date > '2016-09'][-1:]
 Out[36]:
     brand            ean  actual  expected                      date
     936   CCH  3612531672419       1         0  2016-09-02T08:15:48.000Z
+```
+
+http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
+
+```python
+>>> lens=f[(f.date>'2017-04-28 11') & (f.date<'2017-04-28 13')][:]
 ```
 
 grouping
@@ -140,3 +151,16 @@ axis can be changed
 time series
 ===========
 see http://stackoverflow.com/questions/27365467/python-pandas-plot-histogram-of-dates
+j
+
+```python
+>>> f=pd.read_csv(open('tun0011.csv'), header=None, names=['date'], sep='|', parse_dates=[0])
+>>> f.head(1)
+                     date
+0 2017-04-28 11:00:05.240
+>>> freq=f.resample('T', on='date').count()
+```
+
+> sampling (aggregation) is default done on index...
+> use on do it on a column having a correct datatype.
+>
