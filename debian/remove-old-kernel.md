@@ -6,4 +6,4 @@ see [faq](https://www.debian.org/doc/manuals/debian-faq/ch-kernel.en.html)
 
 what works better for me is also remove the headers
 
-    export VERSION=4.4.0-1; sudo -E dpkg --purge linux-headers-$VERSION-amd64 linux-headers-$VERSION-common linux-image-$VERSION-amd64
+    export version=4.9.0-1; sudo -E dpkg --purge linux-headers-$version-amd64 linux-headers-$version-common linux-image-$version-amd64
