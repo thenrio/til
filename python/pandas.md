@@ -91,7 +91,6 @@ see http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-advanced
 
 > .ix is deprecated in 0.20.0 :)
 
-
 ```python
 f2=pd.DataFrame(dict(filename=f.filename, products=f.products))
 ```
@@ -132,6 +131,27 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing
 
 ```python
 >>> lens=f[(f.date>'2017-04-28 11') & (f.date<'2017-04-28 13')][:]
+```
+
+> mind the parens!
+
+```
+>>> frame.groupby(['brand', 'count']).count()
+             host
+brand count
+BNB   35908   276
+      36108     1
+BRE   8888      1
+      19088   214
+      63817     1
+CCH   60929   309
+      61037     1
+
+>>> brand, count=[f['brand'], f['count']]
+
+>>> f[(brand=='BNB') & (count!=35908)]
+               host brand  count
+31  frgbmrfid1303l1   BNB  36108
 ```
 
 grouping
