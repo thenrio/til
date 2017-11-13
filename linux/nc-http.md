@@ -7,3 +7,7 @@ related
 
 * https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.4
 * http://www.commandlinefu.com/commands/view/9164/one-command-line-web-server-on-port-80-using-nc-netcat
+
+note that the the `Content-Length` informs client to read 11 bytes, then close.
+netcat does not close the connection.
+use `-q0` to force close it.
