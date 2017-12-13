@@ -1,0 +1,6 @@
+```sh
+find . -type d -name '1.*' ! -newer ./1.107.0 ! -name 1.107.0
+```
+
+the trick is to remove the file...
+because file matches `-newer file`...
