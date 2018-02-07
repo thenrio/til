@@ -20,5 +20,5 @@ the same with initial values
 ```sh
 a=(1 2)
 echo ${#a[*]}
-# 2
+# 1 2
 ```
