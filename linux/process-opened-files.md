@@ -1,4 +1,4 @@
-given 
+given
 
 pid=$(pgrep -f shop)
 
@@ -27,3 +27,16 @@ or
 
 lsof -p $pid -a -d ^mem,^cwd,^rtd,^txt,^del | wc -l
 244
+
+change limit for process
+------------------------
+
+$ prlimit --nofile --pid $pid
+RESOURCE DESCRIPTION                 SOFT    HARD UNITS
+NOFILE   max number of open files 1048576 1048576 files
+
+$ prlimit --nofile=150:150 --pid $pid
+
+$ prlimit --nofile --pid $pid
+RESOURCE DESCRIPTION              SOFT HARD UNITS
+NOFILE   max number of open files  150  150 files
