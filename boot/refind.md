@@ -8,10 +8,7 @@ TL;DR
 
 edit file refind.conf
 
-    sudo mount /dev/sda1 /boot/efi
-    sudo cp refind.conf /boot/efi/EFI/BOOT/refind.conf
-    sync
-    sudo reboot
+    ./install.sh
 
 state before
 ============
@@ -80,6 +77,4 @@ and ok
 here...
 https://wiki.archlinux.org/index.php/Kernel_parameters#rEFInd
 
-
 did not make it... first option is ok...
-
