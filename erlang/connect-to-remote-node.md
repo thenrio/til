@@ -3,13 +3,13 @@ like so
 
     erl -sname test -setcookie $( cat files/.erlang.cookie ) -remsh rabbit@FRGBMRFIDBUSL2
 
-
 > cookie is not a file
 
 (rabbit@FRGBMRFIDBUSL2)3> net_adm:ping( rabbit@FRGBMRFIDBUSL1 ).
 pong
 
 > `rabbit@FRGBMRFIDBUSL1` is a valid atom
+> node MUST have a name (via sname) otherwise net_adm:ping fails (pang).
 
 another
 
