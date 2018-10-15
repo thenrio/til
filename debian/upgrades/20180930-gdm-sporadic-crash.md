@@ -1,12 +1,34 @@
 symtom is gdm crashes, go back to login screen!
 still process are there...(tmux)...
 
-related?
-https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1747891
+journalctl?
+===========
 
-related symptoms?
-https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/1764417
+```
+Oct 10 17:19:27 pokayoke gnome-shell[17760]: Connection to xwayland lost
+```
 
 related?
-https://www.reddit.com/r/Fedora/comments/7zf5zc/gnome_crashing_constantly_both_on_wayland_and/
-> I use Fedora 28 an I had the same problem. The problem was with GNOME extensions. Using Ctrl+Alt+F3 switch to tty3. Log in with your name and password. Run $ gsettings set org.gnome.shell disable-user-extensions true $ reboot And it should work. I don't know how to get GNOME extensions working.
+========
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=900776
+
+upgrade?
+========
+
+```sh
+tracker reset --hard
+CAUTION: This process may irreversibly delete data.
+Although most content indexed by Tracker can be safely reindexed, it can’t be assured that this is the case for all data. Be aware that you may be incurring in a data loss situation, proceed at your own risk.
+
+Are you sure you want to proceed? [y|N]: y
+Found 0 PIDs…
+Setting database locations
+Checking database directories exist
+Checking database version
+Checking whether database files exist
+Removing all database/storage files
+  Removing database:'/home/thenrio/.cache/tracker/meta.db'
+  Removing db-locale file:'/home/thenrio/.cache/tracker/db-locale.txt'
+  Removing journal:'/home/thenrio/.local/share/tracker/data/tracker-store.journal'
+  Removing db-version file:'/home/thenrio/.cache/tracker/db-version.txt'
+```
