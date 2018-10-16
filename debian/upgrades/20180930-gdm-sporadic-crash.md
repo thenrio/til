@@ -11,6 +11,9 @@ Oct 10 17:19:27 pokayoke gnome-shell[17760]: Connection to xwayland lost
 related?
 ========
 https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=900776
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=908153
+
+looks related to mutter (as match on fedora).
 
 upgrade?
 ========
