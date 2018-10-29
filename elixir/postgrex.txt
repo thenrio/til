@@ -1,0 +1,40 @@
+{:ok, pid} = Postgrex.start_link(username: "queen", password: "honey", database: "hive")
+
+{:ok, c} = Postgrex.prepare(pid, "c", "copy (select (values($1::integer)) as i) to stdout")
+{:ok,
+ %Postgrex.Query{
+   cache: :reference,
+   columns: nil,
+   name: "c",
+   param_formats: [],
+   param_oids: [],
+   param_types: [],
+   ref: #Reference<0.2144760879.2875981825.5557>,
+   result_formats: [],
+   result_oids: nil,
+   result_types: nil,
+   statement: "copy (select (values($1::integer)) as i) to stdout",
+   types: {Postgrex.DefaultTypes, #Reference<0.2144760879.2876112897.2574>}
+ }}
+{:ok, c} = Postgrex.prepare(pid, "c", "select (values($1::integer)) as i");
+{:ok,
+ %Postgrex.Query{
+   cache: :reference,
+   columns: ["i"],
+   name: "c",
+   param_formats: [:binary],
+   param_oids: [23],
+   param_types: [Postgrex.Extensions.Int4],
+   ref: #Reference<0.2144760879.2875981825.5594>,
+   result_formats: [:binary],
+   result_oids: [23],
+   result_types: [Postgrex.Extensions.Int4],
+   statement: "select (values($1::integer)) as i",
+   types: {Postgrex.DefaultTypes, #Reference<0.2144760879.2876112897.2574>}
+ }}
+
+irb(main):053:0> ps = DB["select (values (?)) as i", :$i].prepare(:select, :what)
+=> <Sequel::Postgres::Dataset/PreparedStatement "select (values ($1)) as i">
+irb(main):054:0> ps.call(i: 1)
+=> [{:i=>"1"}]
+
