@@ -43,3 +43,14 @@ looks like network manager is not enough for cli...
 http_proxy -> proxy
 
 ??
+
+missing ui?
+===========
+
+~ $ dpkg -l gnome-control-center
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                 Version      Architecture Description
++++-====================-============-============-=================================
+un  gnome-control-center <none>       <none>       (no description available)
