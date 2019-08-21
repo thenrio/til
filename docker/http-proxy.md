@@ -1,15 +1,13 @@
-see this [article](https://docs.docker.com/articles/systemd/)
+proxy for daemon, using systemd
+===============================
+https://docs.docker.com/config/daemon/systemd/
 
-```
-$ sudo systemctl show docker | grep EnvironmentFile
-EnvironmentFile=/etc/default/docker (ignore_errors=yes)
-```
+> use `systemctl show docker` to see configuration.
 
-http proxy in default env
-=========================
-it has its warts!
+proxy for client
+================
+https://docs.docker.com/network/proxy/
 
-http proxy on the command line
-==============================
-docker uses HTTP[S]_PROXY
+> at this time, I do not know how to build a container pulling an image via proxy
 
+`~/.docker/config.json`
