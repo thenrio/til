@@ -1,0 +1,87 @@
+.center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.center > * {
+	max-width: 80%;
+}
+
+.grid {
+	align-items: center;
+	display: grid;
+	padding: 0 2rem;
+	grid-gap: 1ch;
+}
+.grid .figure {
+	justify-self: end;
+}
+
+.grid.basic {
+	grid-template-columns: minmax(0, 1fr) repeat(2, minmax(2rem, 6rem));
+}
+
+.grid.filler {
+	grid-template-columns: 0.2fr minmax(0, 1fr) repeat(2, minmax(2rem, 6rem)) 0.2fr;
+	grid-template-areas:
+	". p a s .";
+}
+.filler .p {
+	grid-area: p;
+}
+.filler .a {
+	grid-area: a;
+}
+.filler .s {
+	grid-area: s;
+}
+
+.grid.media {
+	grid-template-columns: 8rem minmax(0, 1fr) repeat(2, minmax(2rem, 6rem));
+	grid-template-areas:
+	"i p a s";
+} 
+
+@media screen and (max-width: 768px) {
+	.grid.media.responsive {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas:
+		"i p"
+		"a s";
+	}
+}
+
+.grid.group {
+	grid-template-columns: 8rem minmax(0, 1fr) repeat(2, minmax(2rem, 6rem));
+	grid-template-areas:
+	"i p a s";
+} 
+
+@media screen and (max-width: 768px) {
+	.grid.group.responsive {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas:
+		"i p"
+		"a s";
+	}
+}
+
+.group .c1 {grid-column: 1;}
+.group .c2 {grid-column: 2;}
+.group .c3 {grid-column: 3;}
+.group .c4 {grid-column: 4;}
+.group .s2 {grid-row: span 2;}
+
+div.thumbnail {
+	width: 8rem;
+	height: 8rem;
+	background-color: aquamarine;
+}
+
+.teal {
+	background-color: teal;
+}
+
+header {
+	border-bottom: medium solid #dbdbdb;
+}

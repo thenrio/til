@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link rel="stylesheet" href="./grid.css">
+  </head>
+
+  <body class="center">
+
+    <h3>Basic</h3>
+    <p>When there are many same grids, it's not obvious how they aligns.</p>
+    <article>
+      <header class="grid basic">
+        <div>Product</div>
+        <div class="figure">Available</div>
+        <div class="figure">Sold</div>
+      </header>
+      <div class="grid basic">
+        <div>A long product description.</div>
+        <div class="figure">1</div>
+        <div class="figure">0</div>
+      </div>
+      <div class="grid basic">
+        <div>A short product.</div>
+        <div class="figure">1</div>
+        <div class="figure">0</div>
+      </div>
+      <div class="grid basic">
+        <div>A longer product description, does not remember it.</div>
+        <div class="figure">1</div>
+        <div class="figure">0</div>
+      </div>
+    </article>
+
+    <p>See.</p>
+    <article>
+      <header class="grid basic">
+        <div>Product</div>
+        <div class="figure">Available</div>
+        <div class="figure">Sold</div>
+      </header>
+
+      <div class="grid basic">
+        <div>A short product.</div>
+        <div class="figure">1</div>
+        <div class="figure">0</div>
+      </div>
+
+      <div class="grid basic">
+        <div>A longer product.</div>
+        <div class="figure">1</div>
+        <div class="figure">0</div>
+      </div>
+    </article>
+
+    <h3>filler</h3>
+    <p>
+    Each grid has filler on left and right, the border shows it.
+    This markup does not use blank filler but explicit placement.
+    </p>
+    <article>
+      <header class="grid filler">
+        <div class="p">Product</div>
+        <div class="a figure">Available</div>
+        <div class="s figure">Sold</div>
+      </header>
+      <div class="grid filler">
+        <div class="p">A long product description.</div>
+        <div class="a figure">1</div>
+        <div class="s figure">0</div>
+      </div>
+      <div class="grid filler">
+        <div class="p">A short product.</div>
+        <div class="a figure">1</div>
+        <div class="s figure">0</div>
+      </div>
+      <div class="grid filler">
+        <div class="p">A longer product description, does not remember it.</div>
+        <div class="a figure">1</div>
+        <div class="s figure">0</div>
+      </div>
+    </article>
+
+    <h3>same implicit</h3>
+    <div class="grid basic">
+      <div>Product</div>
+      <div class="figure">Available</div>
+      <div class="figure">Sold</div>
+
+      <div>A long product description.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+
+      <div>A short product.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+
+      <div>A longer product description, does not remember it.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+    </div>
+
+    <h3>media</h3>
+    <div class="grid media">
+      <div></div>
+      <div>Product</div>
+      <div class="figure">Available</div>
+      <div class="figure">Sold</div>
+
+      <div class="thumbnail"></div>
+      <div>A long product description.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+
+      <div class="thumbnail"></div>
+      <div>A short product.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+
+      <div class="thumbnail"></div>
+      <div>A longer product description, does not remember it.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+    </div>
+
+    <h3>media responsive using areas</h3>
+    <div class="grid media responsive">
+      <div></div>
+      <div>Product</div>
+      <div class="figure">Available</div>
+      <div class="figure">Sold</div>
+
+      <div class="thumbnail"></div>
+      <div>A short product.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+
+      <div class="thumbnail"></div>
+      <div>A longer product description, does not remember it.</div>
+      <div class="figure">1</div>
+      <div class="figure">0</div>
+    </div>
+
+    <h3>media, grouping using line based placement</h3>
+    <p>Alas, it does not scale and can not be made responsive™? can it?</p>
+    <div class="grid group responsive">
+      <div></div>
+      <div>Product</div>
+      <div class="figure">Available</div>
+      <div class="figure">Sold</div>
+
+      <div class="thumbnail c1 s2"></div>
+      <div class="c2">A product in size M</div>
+      <div class="c3 figure">1</div>
+      <div class="c4 figure">0</div>
+
+      <div class="c2">A product in size L</div>
+      <div class="c3 figure">1</div>
+      <div class="c4 figure">0</div>
+    </div>
+  </body>
+</html>
