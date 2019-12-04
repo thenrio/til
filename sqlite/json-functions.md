@@ -14,8 +14,9 @@ gcc -fPIC -shared -g json1.c -o json1.so
 
 Then load in sqlite3 (require path to so).
 
+a) head
 
-```
+```sql
 with e as (
   select id, action, date from events where id=367784
 )
@@ -32,7 +33,9 @@ Run Time: real 0.001 user 0.000248 sys 0.000021
 
 fast.
 
-```
+b) head and children?
+
+```sql
 with e as (
   select id, action, date from events where id=367784
 )
@@ -59,3 +62,34 @@ Run Time: real 0.200 user 0.172297 sys 0.028025
 ```
 
 broken, slow.
+
+c) head and children!
+
+```sql
+with e as (
+  select id, action, date from events where id=367784
+)
+select
+  json_object(
+    'id', e.id
+  , 'action', action
+  , 'date', date
+  , 'items', json(gg.items)
+  )
+from e
+left join (
+   select
+     event_id as id
+   , json_group_array(json_object('id', i.event_id)) as items
+   from event_items i
+   where i.event_id=(select id from e)
+   group by event_id
+ ) gg on gg.id=e.id
+;
+
+{"id":367784,"action":16,"date":1569326520000,"items":[{"id":367784},{"id":367784},{"id":367784},{"id":367784}]}
+Run Time: real 0.001 user 0.000553 sys 0.000052
+```
+
+> note the json(gg.items) looks like unnecessary? is not.
+> something to improve in subquery?
