@@ -43,4 +43,19 @@ Untracked files:
         trusted.gpg~
 ```
 
+output has changed:)
 
+```
+/etc/apt/trusted.gpg
+--------------------
+pub   rsa4096 2017-03-13 [SC]
+      8CAE 012E BFAC 38B1 7A93  7CD8 C5E2 2450 0C12 89C0
+      uid           [ unknown] TeamViewer GmbH (TeamViewer Linux 2017) <support@teamviewer.com>
+      sub   rsa4096 2017-03-13 [E]
+```
+
+keyid? last 8 bytes of the hex string (output is terrible!): 0C1289C0
+
+```
+sudo apt-key del 0C1289C0
+```
