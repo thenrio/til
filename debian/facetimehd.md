@@ -1,12 +1,16 @@
-source code https://github.com/patjak/bcwc_pcie.git
+source code https://github.com/patjak/bcwc_pcie
 
-manual is https://github.com/patjak/bcwc_pcie.wiki.git/Get-Started.md
+manual is https://github.com/patjak/bcwc_pcie/wiki/Get-Started
 
 TL;DR
 
 ```bash
-cd firmware
+cd ../facetimehd-firmware
+make
 sudo make install
+```
+
+```bash
 cd -
 make clean
 make
