@@ -32,6 +32,10 @@ iex(22)> :dbg.stop_clear()
 :ok
 ```
 
+match spec
+----------
+see http://erlang.org/doc/apps/erts/match_spec.html#functions-allowed-only-for-tracing
+
 can also have
 
 * return value
@@ -46,13 +50,19 @@ dbg.tpl(Enum, :join, [{:_, [], [{:return_trace}]}])
 "1>2"
 ```
 
+* match args
+
+```
+:dbg.tpl(Ecto.Adapters.Postgres.Connection, :expr, [{{{:in, :_, :_}, :_, :_}, [], []}])
+```
+
+here, match spec is `{{:in, :_, :_}, :_, :_}`, is same as pattern match `({:in, _, _}, _, _)`
+
 * stack?
 
 ```
 :dbg.tpl(Enum, :join, [{:_, [], [{:exception_trace}]}])
 ```
-
-see http://erlang.org/doc/apps/erts/match_spec.html#functions-allowed-only-for-tracing
 
 `:dbg.ctpl` removes the trace pattern.
 
@@ -60,7 +70,6 @@ see:
 
 * http://erlang.org/doc/man/dbg.html#simple-examples---tracing-from-the-shell
 * https://zorbash.com/post/debugging-elixir-applications/
-
 
 trace to file?
 
@@ -75,7 +84,6 @@ trace to file?
 see http://erlang.org/doc/man/erlang.html#trace-3
 
 read file?
-
 
 recon
 -----
