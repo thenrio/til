@@ -28,8 +28,9 @@ $ sync
 
 from sdcard to image
 ====================
+unit!
+-----
 M in dd is MiB in parted, is 2**20.
-
 
 Take End of
 
