@@ -71,3 +71,38 @@ Length: 825, dtype: int64
 
 This is sound, this `value_counts` groups by value (here a float!), and counts values: [r] → {r: count}
 The trick is r is the index in a series, series has two sort: `sort_values`, `sort_index`.
+
+reset_index: {index: value} -> (index, values)
+
+```python
+>>> b= r.value_counts(normalize=True).sort_index().cumsum() * 100
+>>> b
+0.892857        0.003988
+1.351351        0.007975
+1.428571        0.015950
+1.818182        0.019938
+1.851852        0.023925
+                 ...
+98.888889      42.124571
+98.901099      42.128559
+99.000000      42.132546
+99.090909      42.136534
+100.000000    100.000000
+Name: r, Length: 825, dtype: float64
+
+>>> b.reset_index()
+          index           r
+0      0.892857    0.003988
+1      1.351351    0.007975
+2      1.428571    0.015950
+3      1.818182    0.019938
+4      1.851852    0.023925
+..          ...         ...
+820   98.888889   42.124571
+821   98.901099   42.128559
+822   99.000000   42.132546
+823   99.090909   42.136534
+824  100.000000  100.000000
+
+[825 rows x 2 columns]
+```
