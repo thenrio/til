@@ -18,6 +18,7 @@ gaspard-id-front.jpg 3264x1836 24bit N Exif  [OK] 1731899 --> 938699 bytes (45.8
 ```
 
 append?
+-------
 
 ```sh
 gm convert gaspard-id-front.jpg gaspard-id-back.jpg -append gaspard-id.jpg
@@ -27,3 +28,13 @@ And size is? 986164!!
 
 gm default command achieves useful compression AND not lossy (from my eyes).
 This is a good thing.
+
+resize?
+-------
+Useful for slack?
+
+```sh
+gm convert me-big.jpg -resize 500x me.jpg
+```
+
+> from 5613895 to 31664 :)
