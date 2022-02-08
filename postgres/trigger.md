@@ -9,3 +9,7 @@ see [sql-createtrigger](https://www.postgresql.org/docs/current/static/sql-creat
 then, we can not use a sql function...
 
 > ERROR:  SQL functions cannot return type trigger
+
+Doc: 
+
+* /usr/share/doc/postgresql-doc-14/html/sql-createtrigger.html
