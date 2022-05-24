@@ -19,3 +19,9 @@ sqlite> select changes();
 465
 sqlite> end;
 ```
+
+Other heuristic is replace?
+
+```sql
+update moz_places set url=replace(url, '0.17.6', '0.17.9') where url like '%/hexpm/phoenix_live_view/0.17.6/%';
+```
