@@ -27,3 +27,39 @@ related:
 
 * https://stackoverflow.com/questions/2204058/list-columns-with-indexes-in-postgresql
 * pg_get_indexdef
+
+
+Find unused index? Those with 0 scan?
+
+```sql
+select name, pg_size_pretty(size) from (
+select indexrelname as name, pg_relation_size(c.oid) as size
+from pg_stat_all_indexes s
+join pg_class c on c.relname=s.indexrelname
+join pg_namespace n on c.relnamespace=n.oid and nspname='public'
+where idx_scan=0
+order by pg_relation_size(c.oid) desc, name
+limit 10
+) s
+```
+
+How many, what size?
+
+```sql
+select pg_size_pretty(sum(pg_relation_size(c.oid))) as size, count(*)
+from pg_stat_all_indexes s
+join pg_class c on c.relname=s.indexrelname
+join pg_namespace n on c.relnamespace=n.oid and nspname='public'
+where idx_scan=0
+```
+
+Top bloat?
+
+```sql
+select pg_size_pretty(sum(pg_relation_size(c.oid))) as size, count(*)
+from pg_stat_all_indexes s
+join pg_class c on c.relname=s.indexrelname
+join pg_namespace n on c.relnamespace=n.oid and nspname='public'
+where idx_scan=0
+```
+
