@@ -17,3 +17,5 @@ resolution
 or
 
 		apk update && apk add man
+
+build-essential -> build-base (see https://github.com/gliderlabs/docker-alpine/issues/24)
