@@ -1,6 +1,6 @@
 On a table:
 
-```
+```sql
 SELECT i.indexrelid::regclass AS index, s.index_size, s.avg_leaf_density
 FROM pg_index i CROSS JOIN LATERAL pgstatindex(i.indexrelid) s
 WHERE indrelid = 'campaigns'::regclass;
@@ -10,7 +10,7 @@ WHERE indrelid = 'campaigns'::regclass;
 
 On a partitioned table, it is a bit harder...?
 
-```
+```sql
 SELECT i.indexrelid::regclass AS index, amname, s.index_size, s.avg_leaf_density
 FROM pg_index i JOIN pg_class t on t.oid=i.indrelid
 join pg_class c on c.oid=i.indexrelid
@@ -63,3 +63,8 @@ join pg_namespace n on c.relnamespace=n.oid and nspname='public'
 where idx_scan=0
 ```
 
+```sql
+select indexrelname, pg_size_pretty(pg_relation_size(indexrelid))) as size, idx_scan
+from pg_stat_all_indexes
+where relid='display_timeslots'::regclass;
+```
