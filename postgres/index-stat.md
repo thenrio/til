@@ -64,7 +64,7 @@ where idx_scan=0
 ```
 
 ```sql
-select indexrelname, pg_size_pretty(pg_relation_size(indexrelid))) as size, idx_scan
+select indexrelname, pg_size_pretty(pg_relation_size(indexrelid)) as size, idx_scan
 from pg_stat_all_indexes
 where relid='display_timeslots'::regclass;
 ```
