@@ -65,6 +65,20 @@ where idx_scan=0
 
 ```sql
 select indexrelname, pg_size_pretty(pg_relation_size(indexrelid)) as size, idx_scan
-from pg_stat_all_indexes
+from pg_stat_all_indexes s
 where relid='display_timeslots'::regclass;
 ```
+
+with def
+
+
+```sql
+select indexrelname, pg_size_pretty(pg_relation_size(indexrelid)) as size,
+  idx_scan,
+  regexp_replace(i.indexdef, '^.*USING(.*)$', '\1') as typecols
+from pg_stat_all_indexes s
+join pg_indexes i on i.indexname=s.indexrelname
+where i.tablename='display_timeslots'
+order by idx_scan desc, pg_relation_size(indexrelid) desc
+```
+
