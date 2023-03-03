@@ -1,4 +1,5 @@
 
+C+Alt+Shift+r
 
 https://help.gnome.org/users/gnome-help/stable/screen-shot-record.html.en
 
