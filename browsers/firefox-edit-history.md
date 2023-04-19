@@ -23,6 +23,6 @@ sqlite> end;
 Other heuristic is replace?
 
 ```sql
-update moz_places set url=replace(url, '0.17.6', '0.17.9') where url like '%/hexpm/phoenix_live_view/0.17.6/%';
+update moz_places set url=replace(url, '0.18.3', '0.18.18') where url like '%/hexpm/phoenix_live_view/0.18.3/%';
 update moz_places set url=replace(url, 'python3.9', 'python3.10') where url like 'file:///usr/share/doc/python3.9%';
 ```
