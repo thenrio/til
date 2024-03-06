@@ -12,7 +12,7 @@ datas=pd.read_csv(open('frcchrfid437l1-C641-diff-1.csv'), sep='|', header=None, 
 
 specifying data type
 --------------------
-the same with date col (4) parsed as date (not string).
+the same with date col (5) parsed as date (not string).
 
 ```python
 datas=pd.read_csv(open('frcchrfid437l1-C641-diff-1.csv'), sep='|', header=None, names=['brand', 'ean', 'actual', 'expected', 'date'], parse_dates=[4])
