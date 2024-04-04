@@ -5,6 +5,13 @@ Source?
 \df+ check_display_timeslots_overlap
 ```
 
+Parameters, qualify, ambiguous
+==============================
+See /html/plpgsql-implementation.html.
+
+> Function parameters, as well as special variables such as FOUND, can be qualified by the function's name,
+> because they are implicitly declared in an outer block labeled with the function's name.
+
 Volatility?
 ===========
 Default volatility is VOLATILE, which prevents planner to optimize sql of function (when it is sql...).
