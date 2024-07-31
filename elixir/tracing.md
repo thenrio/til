@@ -1,7 +1,7 @@
 observer
 ========
 
-```
+```sh
 iex(19)> :observer.start()
 :ok
 ```
@@ -10,80 +10,13 @@ dbg
 ===
 start tracer, have a Enum.join trace pattern, trace calls all pid.
 
-```
-iex(18)> :dbg.tracer()
-{:ok, #PID<0.129.0>}
-iex(19)> :dbg.tpl(Enum, :join, [])
-{:ok, [{:matched, :nonode@nohost, 2}]}
-iex(20)> :dbg.p(:all, :call)
-{:ok, [{:matched, :nonode@nohost, 56}]}
+```elixir
+:dbg.tracer()
+:dbg.p(:all, :c)
+:dbg.tp({Gettext, :dgettext, 4}, :cx)
 ```
 
-```
-iex(21)> Enum.join([1, 2], ":")
-(<0.104.0>) call 'Elixir.Enum':join([1,2],<<":">>)
-"1:2"
-```
-
-stop tracer, remove trace pattern.
-
-```
-iex(22)> :dbg.stop_clear()
-:ok
-```
-
-match spec
-----------
-see http://erlang.org/doc/apps/erts/match_spec.html#functions-allowed-only-for-tracing
-
-can also have
-
-* return value
-
-```
-dbg.tpl(Enum, :join, [{:_, [], [{:return_trace}]}])
-```
-
-```
-(<0.104.0>) call 'Elixir.Enum':join([1,2],<<">">>)
-(<0.104.0>) returned from 'Elixir.Enum':join/2 -> <<"1>2">>
-"1>2"
-```
-
-* match args
-
-```
-:dbg.tpl(Ecto.Adapters.Postgres.Connection, :expr, [{{{:in, :_, :_}, :_, :_}, [], []}])
-```
-
-here, match spec is `{{:in, :_, :_}, :_, :_}`, is same as pattern match `({:in, _, _}, _, _)`
-
-* stack?
-
-```
-:dbg.tpl(Enum, :join, [{:_, [], [{:exception_trace}]}])
-```
-
-`:dbg.ctpl` removes the trace pattern.
-
-see:
-
-* http://erlang.org/doc/man/dbg.html#simple-examples---tracing-from-the-shell
-* https://zorbash.com/post/debugging-elixir-applications/
-
-trace to file?
-
-```
-:dbg.stop_clear()
-:dbg.tracer(:port, :dbg.trace_port(:file, Path.expand("~/tmp/dbg.pcap") |> to_charlist()))
-:dbg.tp(DBConnection.ConnectionPool, [])
-:dbg.tp(DBConnection.Holder, [])
-:dbg.p(:all, [:c, :timestamp])
-```
-
-see http://erlang.org/doc/man/erlang.html#trace-3
-
-read file?
+See https://www.erlang.org/doc/apps/runtime_tools/dbg.html#ltp/0
 
 recon
 -----
