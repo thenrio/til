@@ -33,7 +33,7 @@ bar
 and the final form
 
 ```bash
-echo bar 1>&2 | wc -l
+echo bar >&2 | wc -l
 bar
 0
 ```
