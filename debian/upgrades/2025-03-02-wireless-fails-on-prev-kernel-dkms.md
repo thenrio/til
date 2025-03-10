@@ -21,3 +21,16 @@ I have two kernels:
 * 6.12.17: has wifi
 
 As new kernel 6.12.17 has wifi, I do not plan to fix the modules of 6.11.10, yet...
+
+BUT doing this made module unavailable in new kernel :(
+
+So I had two defunct kernels :(
+
+A containment, in each was
+
+```
+dkms build broadcom-sta/6.30.223.271
+dkms install broadcom-sta/6.30.223.271
+```
+
+and reboot.
