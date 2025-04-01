@@ -28,9 +28,21 @@ So I had two defunct kernels :(
 
 A containment, in each was
 
-```
+```sh
 dkms build broadcom-sta/6.30.223.271
 dkms install broadcom-sta/6.30.223.271
 ```
 
 and reboot.
+
+Can check that with 
+
+```sh
+dkms status
+Deprecated feature: MODULES_CONF (/var/lib/dkms/facetimehd/0.6.8/source/dkms.conf)
+Deprecated feature: MODULES_CONF (/var/lib/dkms/facetimehd/0.6.8/source/dkms.conf)
+broadcom-sta/6.30.223.271, 6.12.17-amd64, x86_64: installed
+broadcom-sta/6.30.223.271, 6.6.9-amd64, x86_64: installed (Built modules are missing in the kernel modules folder)
+facetimehd/0.6.8, 6.11.10-amd64, x86_64: installed
+facetimehd/0.6.8, 6.12.17-amd64, x86_64: installed
+```
